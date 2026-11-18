@@ -3,7 +3,7 @@ name: Coletar pautas de GTA VI
 on:
   workflow_dispatch:
   schedule:
-    - cron: '24 12 * * *'
+    - cron: '7,37 * * * *'
 
 permissions:
   contents: read
@@ -19,3 +19,35 @@ jobs:
           name: pautas-gta-vi
           path: pautas.json
           retention-days: 7
+  videos:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: vice-city-video-feed
+      cancel-in-progress: false
+    env:
+      YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 editorial/videos.py --channel-id "$YOUTUBE_CHANNEL_ID" --output "$RUNNER_TEMP/videos.json"
+      - name: Atualizar feed público de vídeos
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=refs/heads/video-feed
+          old=$(git ls-remote origin "$branch" | cut -f1)
+          blob=$(git hash-object -w "$RUNNER_TEMP/videos.json")
+          tree=$(printf '100644 blob %s\tvideos.json\n' "$blob" | git mktree)
+          parents=()
+          if [[ -n "$old" ]]; then
+            git fetch --no-tags --depth=1 origin "$branch"
+            if [[ "$(git rev-parse 'FETCH_HEAD^{tree}')" == "$tree" ]]; then
+              exit 0
+            fi
+            parents=(-p FETCH_HEAD)
+          fi
+          commit=$(git -c user.name='github-actions[bot]' \
+            -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+            commit-tree "$tree" "${parents[@]}" -m 'Update public YouTube recommendations')
+          git push origin "$commit:$branch"
