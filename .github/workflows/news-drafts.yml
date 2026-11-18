@@ -1,0 +1,21 @@
+name: Coletar pautas de GTA VI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '24 12 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 editorial/collect.py --output pautas.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pautas-gta-vi
+          path: pautas.json
+          retention-days: 7

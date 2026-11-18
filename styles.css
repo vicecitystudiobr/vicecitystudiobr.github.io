@@ -95,3 +95,19 @@ h1, h2, h3 { line-height: 1.1; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+}
+.news-card { padding: clamp(1.1rem, 3vw, 1.8rem); }
+.news-card time { color: var(--orange); font-size: .82rem; }
+.news-card h3 { font-size: clamp(1.2rem, 3vw, 1.55rem); }
+.news-card a {
+  display: inline-block;
+  color: var(--pink);
+  margin-top: 1rem;
+  font-size: .9rem;
+  font-weight: 700;
+}
