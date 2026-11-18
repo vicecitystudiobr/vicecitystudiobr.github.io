@@ -193,3 +193,20 @@ h1, h2, h3 { line-height: 1.1; }
 .video-recommendations li { display: grid; gap: .25rem; padding: .65rem 0; border-bottom: 1px solid var(--line); }
 .video-recommendations time { color: var(--muted); font-size: .83rem; }
 .video-recommendations a { color: var(--pink); overflow-wrap: anywhere; }
+
+.edition-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .78fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3.5rem);
+}
+.edition-copy h1 { font-size: clamp(2.65rem, 6vw, 5.25rem); }
+.edition-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 690px) {
+  .edition-heading { grid-template-columns: minmax(0, 1fr); }
+  .edition-art { max-width: 32rem; }
+}
