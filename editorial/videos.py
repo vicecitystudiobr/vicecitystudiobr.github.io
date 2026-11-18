@@ -31,10 +31,21 @@ def resolve_channel():
 
 def recent_videos(feed, channel_id):
     root = ElementTree.fromstring(feed)
-    if root.findtext('yt:channelId', namespaces=NS) != channel_id:
-        raise ValueError('O RSS não pertence ao canal consultado.')
+    identifiers = {
+        root.findtext('yt:channelId', namespaces=NS),
+        root.findtext('a:id', namespaces=NS),
+        root.findtext('a:author/a:uri', namespaces=NS),
+    }
+    # YouTube's Atom feed can omit the UC prefix in its top-level identifiers.
+    expected = {channel_id, channel_id[2:], f'yt:channel:{channel_id}',
+                f'yt:channel:{channel_id[2:]}', f'https://www.youtube.com/channel/{channel_id}'}
+    if not identifiers.intersection(expected):
+        raise ValueError(f'Feed inesperado para {channel_id}. Identificadores do RSS: {identifiers!r}')
     videos = {}
     for entry in root.findall('a:entry', NS):
+        owner = entry.findtext('yt:channelId', namespaces=NS)
+        if owner and owner not in {channel_id, channel_id[2:]}:
+            raise ValueError('O RSS contém um vídeo de outro canal.')
         key = entry.findtext('yt:videoId', namespaces=NS)
         title = entry.findtext('a:title', namespaces=NS)
         date = entry.findtext('a:published', namespaces=NS)
