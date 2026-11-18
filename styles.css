@@ -111,3 +111,72 @@ h1, h2, h3 { line-height: 1.1; }
   font-size: .9rem;
   font-weight: 700;
 }
+
+.newsroom .header { background: #100a18; }
+.newsroom .header nav a { padding-block: .35rem; }
+.editorial-hero {
+  min-height: clamp(360px, 51vw, 620px);
+  background-position: center, center, center 57%;
+  border-bottom: 1px solid var(--line);
+}
+.editorial-hero .hero-inner { padding-block: clamp(2.7rem, 7vw, 6rem); }
+.editorial-hero h1 { font-size: clamp(3.1rem, 7.9vw, 7rem); }
+.editorial-hero .button span { margin-left: .5rem; }
+.editorial-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  gap: clamp(1rem, 4vw, 3.25rem);
+  align-items: start;
+}
+.newsroom .news-grid { grid-template-columns: minmax(0, 1fr); }
+.newsroom .news-card { background: linear-gradient(120deg,#21152b,var(--panel)); }
+.newsroom .news-card h3 { margin-top: .5rem; }
+.newsroom .news-card a, .official-copy a {
+  color: var(--pink);
+  font-weight: 750;
+  text-decoration: none;
+}
+.newsroom .news-card a:hover, .official-copy a:hover { text-decoration: underline; }
+.official-card {
+  border: 1px solid var(--line);
+  border-radius: .8rem;
+  background: #21152b;
+  overflow: hidden;
+}
+.gallery-art {
+  aspect-ratio: 2.4;
+  background: linear-gradient(130deg,#25163440,#40174555),url('./assets/tropical.webp') 70% 58% / cover;
+}
+.official-copy { padding: 1.1rem 1.25rem 1.3rem; }
+.official-copy h2 { font-size: clamp(1.35rem, 2.7vw, 1.9rem); margin: .45rem 0 .6rem; }
+.official-copy > p:not(.eyebrow), .editorial-channels > p { color: var(--muted); }
+.official-copy a { display: inline-block; margin-top: .8rem; font-size: .9rem; }
+.editorial-channels { border-top: 1px solid var(--line); }
+.editorial-channels h2 { margin-bottom: .4rem; }
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.channel-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  text-decoration: none;
+  padding: .85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  background: var(--panel);
+}
+.channel-card span { color: var(--pink); }
+.channel-card:hover { border-color: var(--pink); }
+@media (max-width: 720px) {
+  .editorial-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .editorial-layout > .media-section { padding-top: 0; }
+  .editorial-hero { background-position: center, center, 61% center; }
+}
+@media (max-width: 470px) {
+  .channel-grid { grid-template-columns: minmax(0, 1fr); }
+}
