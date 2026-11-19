@@ -4,16 +4,6 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { POSTS } from "@/data/content";
 
 export const Route = createFileRoute("/novidades")({
-  head: () => ({
-    meta: [
-      { title: "Novidades de GTA VI — Vice City Studio" },
-      { name: "description", content: "Posts curtos sobre GTA VI, identificados como Oficial, Análise ou Rumor, sempre com a fonte." },
-      { property: "og:title", content: "Novidades de GTA VI — Vice City Studio" },
-      { property: "og:description", content: "Oficial, análise ou rumor: as novidades de GTA VI com a fonte." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
   component: NewsPage,
 });
 

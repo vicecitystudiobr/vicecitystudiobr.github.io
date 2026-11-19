@@ -18,3 +18,19 @@ vêm de `editorial/approved.json` na raiz. O feed público de vídeos continua
 sendo atualizado pelo workflow existente. O projeto Lovable sincroniza com
 seu repositório de origem e novas mudanças feitas lá precisam ser portadas
 para esta vitrine.
+
+## Metadados e futura integração com GA4
+
+Os metadados das rotas React são definidos em `seo-pages.json`. O build
+inclui as tags no HTML inicial. A navegação React mantém o título, a URL
+canônica e os metadados da página em sincronia.
+
+O GA4 está desativado. Para ativar, configure um fluxo Web para
+`https://vicecitystudio.com.br/` e use o ID de medição `G-…`. Defina o
+consentimento e revise a política de privacidade antes de inserir a tag.
+Inclua o mesmo bootstrap no HTML-base da vitrine e nas páginas estáticas
+PT/EN em produção. Use uma única forma de medir o carregamento inicial e
+as mudanças de rota do TanStack Router. Confira no DebugView que cada
+navegação gera um único `page_view`.
+
+[Guia do Google para medir SPAs no GA4](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications)

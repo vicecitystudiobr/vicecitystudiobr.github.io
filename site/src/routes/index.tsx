@@ -12,16 +12,6 @@ import { DemoBadge, Tag } from "@/components/site/Tag";
 import { POSTS, VIDEOS, YOUTUBE_CHANNEL_URL, formatDateBR, getFeaturedVideo, getWatchUrl } from "@/data/content";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Vice City Studio — O universo de GTA VI, detalhe por detalhe" },
-      { name: "description", content: "Novidades, análises de trailers e teorias sobre Vice City. Assista aos vídeos do estúdio no YouTube." },
-      { property: "og:title", content: "Vice City Studio — O universo de GTA VI, detalhe por detalhe" },
-      { property: "og:description", content: "Novidades, análises de trailers e teorias sobre Vice City." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
   component: Index,
 });
 

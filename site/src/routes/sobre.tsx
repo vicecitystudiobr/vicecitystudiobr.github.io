@@ -4,16 +4,6 @@ import { SocialIcon } from "@/components/site/SocialIcon";
 import { SOCIAL_LINKS } from "@/data/content";
 
 export const Route = createFileRoute("/sobre")({
-  head: () => ({
-    meta: [
-      { title: "Sobre o estúdio — Vice City Studio" },
-      { name: "description", content: "Conheça o Vice City Studio, estúdio independente de conteúdo sobre GTA VI, e siga no YouTube, TikTok e Instagram." },
-      { property: "og:title", content: "Sobre o estúdio — Vice City Studio" },
-      { property: "og:description", content: "Estúdio independente de conteúdo sobre GTA VI." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
   component: AboutPage,
 });
 

@@ -1,0 +1,23 @@
+{
+  "origin": "https://vicecitystudio.com.br",
+  "image": "/assets/vice-city-banner.webp",
+  "pages": {
+    "/": {
+      "title": "Vice City Studio — O universo de GTA VI, detalhe por detalhe",
+      "description": "Novidades, análises de trailers e teorias sobre Vice City. Assista aos vídeos do estúdio no YouTube.",
+      "english": "/en/"
+    },
+    "/videos/": {
+      "title": "Vídeos sobre GTA VI — Vice City Studio",
+      "description": "Notícias, análises de trailers, teorias e shorts sobre GTA VI. Filtre por categoria e assista no YouTube."
+    },
+    "/novidades/": {
+      "title": "Novidades de GTA VI — Vice City Studio",
+      "description": "Acompanhe novidades, análises e rumores sobre GTA VI, com a fonte de cada publicação."
+    },
+    "/sobre/": {
+      "title": "Sobre o estúdio — Vice City Studio",
+      "description": "Conheça o Vice City Studio, um projeto independente de fãs que acompanha notícias e trailers de GTA VI."
+    }
+  }
+}

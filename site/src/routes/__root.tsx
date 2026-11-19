@@ -4,13 +4,14 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
+  useRouterState,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { pageSeo } from "../lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -74,31 +75,6 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    // Each content route sets its own head(). Never add og:image or twitter:image here.
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#140b24" },
-      { title: "Vice City Studio — GTA VI em detalhes" },
-      { name: "description", content: "Vídeos, novidades, análises de trailers e teorias sobre GTA VI e Vice City." },
-      { name: "author", content: "Vice City Studio" },
-      { property: "og:title", content: "Vice City Studio — GTA VI em detalhes" },
-      { property: "og:description", content: "Vídeos, novidades, análises de trailers e teorias sobre GTA VI e Vice City." },
-      { property: "og:type", content: "website" },
-      { property: "og:locale", content: "pt_BR" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap",
-      },
-    ],
-  }),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
@@ -110,7 +86,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <HeadContent />
+      <PageMetadata />
       <SiteHeader />
       <main>
         <Outlet />
@@ -118,4 +94,30 @@ function RootComponent() {
       <SiteFooter />
     </QueryClientProvider>
   );
+}
+
+
+function PageMetadata() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    const seo = pageSeo(pathname);
+    document.head.querySelectorAll("[data-site-seo]").forEach((element) => element.remove());
+    document.title = seo?.title ?? "Página não encontrada — Vice City Studio";
+    if (!seo) return;
+
+    const addTag = (tag: "link" | "meta", attributes: Record<string, string | undefined>) => {
+      const element = document.createElement(tag);
+      element.setAttribute("data-site-seo", "");
+      for (const [name, value] of Object.entries(attributes)) {
+        if (value !== undefined) element.setAttribute(name, value);
+      }
+      document.head.append(element);
+    };
+
+    seo.links.forEach((attributes) => addTag("link", attributes));
+    seo.meta.forEach((attributes) => addTag("meta", attributes));
+  }, [pathname]);
+
+  return null;
 }
