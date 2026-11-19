@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  // Enable after Enhanced Measurement is off for stream 16371130186.
-  const analyticsEnabled = false;
+  // Enhanced Measurement is off for stream 16371130186 (confirmed by owner 2026-11-19); events are sent only by this script, after consent.
+  const analyticsEnabled = true;
   if (!analyticsEnabled) return;
 
   const measurementId = "G-SBSRDXEF5M";
