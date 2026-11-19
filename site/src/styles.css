@@ -1,0 +1,223 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Keep every @import in this top block. Web fonts load via <link> in src/routes/__root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Vice City Studio — design system.
+ * Miami à noite: fundo noturno profundo, neon rosa, roxo e ciano, pôr do sol âmbar.
+ */
+
+@theme inline {
+  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-purple: var(--neon-purple);
+  --color-sunset: var(--sunset);
+  --color-night: var(--night);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --night: oklch(0.12 0.035 290);
+  --neon-pink: oklch(0.7 0.26 350);
+  --neon-cyan: oklch(0.84 0.14 205);
+  --neon-purple: oklch(0.62 0.24 300);
+  --sunset: oklch(0.8 0.16 62);
+
+  --background: var(--night);
+  --foreground: oklch(0.97 0.012 320);
+  --card: oklch(0.18 0.05 292);
+  --card-foreground: oklch(0.97 0.012 320);
+  --popover: oklch(0.18 0.05 292);
+  --popover-foreground: oklch(0.97 0.012 320);
+  --primary: var(--neon-pink);
+  --primary-foreground: oklch(0.13 0.04 300);
+  --secondary: var(--neon-cyan);
+  --secondary-foreground: oklch(0.13 0.04 260);
+  --muted: oklch(0.22 0.05 292);
+  --muted-foreground: oklch(0.78 0.04 300);
+  --accent: oklch(0.26 0.07 300);
+  --accent-foreground: oklch(0.97 0.012 320);
+  --destructive: oklch(0.63 0.24 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.32 0.07 300);
+  --input: oklch(0.32 0.07 300);
+  --ring: var(--neon-cyan);
+
+  --gradient-neon: linear-gradient(100deg, var(--neon-pink), var(--neon-purple) 55%, var(--neon-cyan));
+  --gradient-sunset: linear-gradient(180deg, var(--sunset), var(--neon-pink) 55%, var(--neon-purple));
+  --gradient-hero-fade: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--night) 35%, transparent) 0%,
+    color-mix(in oklab, var(--night) 15%, transparent) 40%,
+    color-mix(in oklab, var(--night) 85%, transparent) 80%,
+    var(--night) 100%
+  );
+  --gradient-card: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--card) 92%, var(--neon-purple)),
+    var(--card)
+  );
+  --shadow-neon-pink: 0 0 0 1px color-mix(in oklab, var(--neon-pink) 60%, transparent),
+    0 10px 40px -8px color-mix(in oklab, var(--neon-pink) 55%, transparent);
+  --shadow-neon-cyan: 0 0 0 1px color-mix(in oklab, var(--neon-cyan) 60%, transparent),
+    0 10px 40px -10px color-mix(in oklab, var(--neon-cyan) 50%, transparent);
+  --shadow-card: 0 20px 50px -24px color-mix(in oklab, black 80%, transparent);
+
+  --chart-1: var(--neon-pink);
+  --chart-2: var(--neon-cyan);
+  --chart-3: var(--neon-purple);
+  --chart-4: var(--sunset);
+  --chart-5: oklch(0.7 0.15 150);
+  --sidebar: oklch(0.16 0.045 292);
+  --sidebar-foreground: oklch(0.97 0.012 320);
+  --sidebar-primary: var(--neon-pink);
+  --sidebar-primary-foreground: oklch(0.13 0.04 300);
+  --sidebar-accent: oklch(0.26 0.07 300);
+  --sidebar-accent-foreground: oklch(0.97 0.012 320);
+  --sidebar-border: oklch(0.32 0.07 300);
+  --sidebar-ring: var(--neon-cyan);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-neon-gradient {
+  background-image: var(--gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-glow-pink {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--neon-pink) 70%, transparent);
+}
+
+@utility bg-gradient-neon {
+  background-image: var(--gradient-neon);
+}
+
+@utility bg-hero-fade {
+  background-image: var(--gradient-hero-fade);
+}
+
+@utility bg-card-gradient {
+  background-image: var(--gradient-card);
+}
+
+@utility shadow-neon-pink {
+  box-shadow: var(--shadow-neon-pink);
+}
+
+@utility shadow-neon-cyan {
+  box-shadow: var(--shadow-neon-cyan);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility neon-divider {
+  height: 2px;
+  background-image: var(--gradient-neon);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--neon-pink) 60%, transparent);
+}
+
+/* Linhas horizontais de pôr do sol estilo anos 80 */
+@utility sunset-stripes {
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 10px,
+    color-mix(in oklab, var(--night) 70%, transparent) 10px 13px
+  );
+}
+
+@keyframes neon-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.55; }
+}
+
+@utility animate-neon-flicker {
+  animation: neon-flicker 6s infinite;
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-float-up {
+  animation: float-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
