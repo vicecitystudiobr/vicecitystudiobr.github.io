@@ -117,6 +117,7 @@ function PageMetadata() {
 
     seo.links.forEach((attributes) => addTag("link", attributes));
     seo.meta.forEach((attributes) => addTag("meta", attributes));
+    document.dispatchEvent(new Event("vcs:page"));
   }, [pathname]);
 
   return null;

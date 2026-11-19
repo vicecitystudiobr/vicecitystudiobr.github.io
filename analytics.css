@@ -1,0 +1,41 @@
+.vcs-cookie-panel {
+  box-sizing: border-box;
+  width: min(34rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1.1rem;
+  border: 1px solid #754478;
+  border-radius: 0.9rem;
+  background: #170e24;
+  color: #fff4ff;
+  font: 500 0.94rem/1.45 system-ui, sans-serif;
+  box-shadow: 0 0.6rem 2rem #080412bf;
+}
+.vcs-cookie-banner {
+  position: fixed;
+  inset: auto 1rem 1rem auto;
+  z-index: 70;
+}
+dialog.vcs-cookie-panel { margin: auto; }
+.vcs-cookie-panel::backdrop { background: #080412bf; }
+.vcs-cookie-panel h2 { margin: 0 0 0.45rem; font-size: 1.12rem; font-weight: 750; }
+.vcs-cookie-panel p { margin: 0 0 0.9rem; }
+.vcs-cookie-panel a { color: #77f2ef; text-decoration: underline; }
+.vcs-cookie-panel label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; }
+.vcs-cookie-panel input { accent-color: #a244ac; }
+.vcs-cookie-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.vcs-cookie-actions button,
+.vcs-cookie-footer button {
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #946393;
+  border-radius: 0.55rem;
+  background: #241532;
+  color: #fff4ff;
+  font: inherit;
+  cursor: pointer;
+}
+.vcs-cookie-actions .vcs-cookie-primary { background: #f4a4ec; color: #26132f; border-color: #f4a4ec; }
+.vcs-cookie-actions button:focus-visible,
+.vcs-cookie-footer button:focus-visible { outline: 2px solid #77f2ef; outline-offset: 2px; }
+.vcs-cookie-footer { padding: 0 1rem 1rem; text-align: center; }

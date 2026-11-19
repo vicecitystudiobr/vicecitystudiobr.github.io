@@ -19,18 +19,30 @@ sendo atualizado pelo workflow existente. O projeto Lovable sincroniza com
 seu repositório de origem e novas mudanças feitas lá precisam ser portadas
 para esta vitrine.
 
-## Metadados e futura integração com GA4
+## Metadados e GA4
 
 Os metadados das rotas React são definidos em `seo-pages.json`. O build
 inclui as tags no HTML inicial. A navegação React mantém o título, a URL
 canônica e os metadados da página em sincronia.
 
-O GA4 está desativado. Para ativar, configure um fluxo Web para
-`https://vicecitystudio.com.br/` e use o ID de medição `G-…`. Defina o
-consentimento e revise a política de privacidade antes de inserir a tag.
-Inclua o mesmo bootstrap no HTML-base da vitrine e nas páginas estáticas
-PT/EN em produção. Use uma única forma de medir o carregamento inicial e
-as mudanças de rota do TanStack Router. Confira no DebugView que cada
-navegação gera um único `page_view`.
+O GA4 usa o fluxo Web `16371130186` e o ID `G-SBSRDXEF5M`. Os arquivos
+`analytics.js` e `analytics.css`, na raiz, atendem às páginas PT/EN e
+às rotas React. O bootstrap básico carrega a tag somente após aceite.
+O rodapé abre as preferências em todas as páginas públicas.
+
+A integração envia `page_view` manualmente uma vez por rota, `social_click`
+com `platform`, e `contact_click`. Os eventos incluem `language`. A tag
+mede engajamento enquanto o Analytics está autorizado. A localização
+enviada exclui fragmentos e parâmetros e o referenciador inicial é
+reduzido à origem.
+
+Antes da ativação, desligue a Medição aprimorada no fluxo Web. A tag
+publicada pelo Google ainda registrava histórico, cliques de saída,
+buscas e formulários automaticamente durante a implementação. A
+configuração `send_page_view: false` só suprime a visualização automática
+inicial. Validada a alteração no fluxo, defina `analyticsEnabled = true`
+em `analytics.js` e publique. Confirme no DebugView um `page_view` por
+navegação. Registre `platform` como dimensão personalizada de evento
+para detalhar redes nos relatórios.
 
 [Guia do Google para medir SPAs no GA4](https://developers.google.com/analytics/devguides/collection/ga4/single-page-applications)

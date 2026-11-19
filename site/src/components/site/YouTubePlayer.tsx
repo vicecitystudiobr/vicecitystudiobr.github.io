@@ -36,6 +36,7 @@ export function YouTubePlayer({ video }: { video: Video }) {
   return (
     <button
       type="button"
+      data-vcs-youtube
       onClick={() => setOpen(true)}
       aria-label={`Reproduzir: ${video.title}`}
       className="group relative block aspect-video w-full overflow-hidden rounded-2xl shadow-card ring-1 ring-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
