@@ -1,4 +1,23 @@
 {
   "channel": "https://www.youtube.com/@ViceCityStudio-BR",
-  "videos": []
+  "videos": [
+    {
+      "id": "P6XBwuOI1Jc",
+      "title": "GTA 5 x GTA 6: o que mudou em 13 anos",
+      "published": "2026-11-19T02:40:53+00:00",
+      "url": "https://www.youtube.com/watch?v=P6XBwuOI1Jc"
+    },
+    {
+      "id": "qXLxW6Vsq5o",
+      "title": "Quantas horas dura GTA 6? O que é oficial e o que é só estimativa",
+      "published": "2026-11-19T02:19:52+00:00",
+      "url": "https://www.youtube.com/watch?v=qXLxW6Vsq5o"
+    },
+    {
+      "id": "JLlygQggPtc",
+      "title": "Classificação de GTA 6: o que a ESRB aponta (pais, atenção!)",
+      "published": "2026-11-19T02:19:49+00:00",
+      "url": "https://www.youtube.com/watch?v=JLlygQggPtc"
+    }
+  ]
 }
